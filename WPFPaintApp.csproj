@@ -6,33 +6,41 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+
+	<NoWarn>$(NoWarn);NU1701</NoWarn> <!-- Suppress Package Dependency Warning -->
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="color-palette.png" />
+    <None Remove="Icons\circle.png" />
     <None Remove="Icons\close.png" />
     <None Remove="Icons\color-palette.png" />
+    <None Remove="Icons\diagonal-line.png" />
     <None Remove="Icons\eraser.png" />
     <None Remove="Icons\minus.png" />
     <None Remove="Icons\paint-brush.png" />
     <None Remove="Icons\paint-bucket.png" />
+    <None Remove="Icons\rectangle.png" />
     <None Remove="Icons\selection-box.png" />
     <None Remove="Icons\shapes.png" />
     <None Remove="Icons\text.png" />
+    <None Remove="Icons\triangle.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="color-palette.png" />
+    <Resource Include="Icons\circle.png" />
     <Resource Include="Icons\close.png" />
     <Resource Include="Icons\color-palette.png" />
+    <Resource Include="Icons\diagonal-line.png" />
     <Resource Include="Icons\eraser.png" />
     <Resource Include="Icons\maximize.png" />
     <Resource Include="Icons\minus.png" />
     <Resource Include="Icons\paint-brush.png" />
     <Resource Include="Icons\paint-bucket.png" />
+    <Resource Include="Icons\rectangle.png" />
     <Resource Include="Icons\selection-box.png" />
     <Resource Include="Icons\shapes.png" />
     <Resource Include="Icons\text.png" />
+    <Resource Include="Icons\triangle.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,8 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SkiaSharp" Version="3.119.1" />
-    <PackageReference Include="SkiaSharp.Views.WPF" Version="3.119.1" />
+    <PackageReference Include="SkiaSharp" Version="3.119.2" />
+    <PackageReference Include="SkiaSharp.Views.WPF" Version="3.119.2" />
   </ItemGroup>
 
 </Project>

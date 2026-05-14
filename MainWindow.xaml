@@ -8,10 +8,13 @@
         mc:Ignorable="d"
         WindowStyle="None"      
         Title="MainWindow" Height="700" Width="1200">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="34"/>
+            <RowDefinition Height="54"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -25,12 +28,12 @@
 
             <!-- File Options -->
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Image Height="20" Width="20" Source="/Icons/color-palette.png"/>
+                <Image Margin="2,0,0,0" Height="20" Width="20" Source="/Icons/color-palette.png"/>
                 <Menu>
                     <MenuItem Header="File" Height="20" Width="38" FontFamily="Calibri" FontSize="17" Padding="8,0,0,0" Background="White" BorderThickness="0">
-                        <MenuItem Header="New"/>
-                        <MenuItem Header="Open"/>
-                        <MenuItem Header="Save"/>
+                        <MenuItem Header="New" Click="ClickNew"/>
+                        <MenuItem Header="Open" Click="ClickOpen"/>
+                        <MenuItem Header="Save" Click="ClickSave"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>
@@ -52,74 +55,92 @@
             </StackPanel>
         </Grid>
 
-
-
-
-
-
         <!-- Tool Bar -->
         <Rectangle Fill="#ebebeb" Grid.Row="1"/>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
-            <ToggleButton Height="28" Width="28" Margin="4,2,2,2" Background="Transparent" Click="ClickBrush" IsChecked="True" x:Name="ButtonBrush">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!-- Tools for Select Tool -->
+            <Button Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickSelectBrush" Visibility="{Binding ShowSelectToolButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonSelectBrush">
                 <Image Source="/Icons/paint-brush.png"/>
-            </ToggleButton>
-            <ToggleButton Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickSelect" x:Name="ButtonSelect">
+            </Button>
+
+            <!-- Tools -->
+            <Button Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickBrush" Visibility="{Binding ShowToolButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonBrush">
+                <Image Source="/Icons/paint-brush.png"/>
+            </Button>
+            <Button Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickSelect" Visibility="{Binding ShowToolButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonSelect">
                 <Image Source="/Icons/selection-box.png"/>
-            </ToggleButton>
-            <ToggleButton Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickShape" x:Name="ButtonShape">
+            </Button>
+            <Button Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickShape" Visibility="{Binding ShowToolButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonShape">
                 <Image Source="/Icons/shapes.png"/>
-            </ToggleButton>
-            <ToggleButton Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickFill" x:Name="ButtonFill">
+            </Button>
+            <Button Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickFill" Visibility="{Binding ShowToolButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonFill">
                 <Image Source="/Icons/paint-bucket.png"/>
-            </ToggleButton>
-            <ToggleButton Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickText" x:Name="ButtonText">
+            </Button>
+            <Button Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickText" Visibility="{Binding ShowToolButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonText">
                 <Image Source="/Icons/text.png"/>
-            </ToggleButton>
-            <ToggleButton Height="28" Width="28" Margin="2" Background="Transparent" Click="ClickErase" x:Name="ButtonErase">
-                <Image Source="/Icons/eraser.png"/>
-            </ToggleButton>
-            <ToggleButton Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickRed" x:Name="ButtonRed">
+            </Button>
+
+            <!-- Colors and Eraser -->
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickRed" Visibility="{Binding ShowColorButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonRed">
                 <Rectangle Fill="Red" Height="14" Width="14"/>
-            </ToggleButton>
-            <ToggleButton Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickBlue" x:Name="ButtonBlue">
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickBlue" Visibility="{Binding ShowColorButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonBlue">
                 <Rectangle Fill="Blue" Height="14" Width="14"/>
-            </ToggleButton>
-            <ToggleButton Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickYellow" x:Name="ButtonYellow">
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickYellow" Visibility="{Binding ShowColorButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonYellow">
                 <Rectangle Fill="Yellow" Height="14" Width="14"/>
-            </ToggleButton>
-            <ToggleButton Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickGreen" x:Name="ButtonGreen">
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickGreen" Visibility="{Binding ShowColorButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonGreen">
                 <Rectangle Fill="Green" Height="14" Width="14"/>
-            </ToggleButton>
-            <ToggleButton Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickOrange" x:Name="ButtonOrange">
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickOrange" Visibility="{Binding ShowColorButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonOrange">
                 <Rectangle Fill="Orange" Height="14" Width="14"/>
-            </ToggleButton>
-            <ToggleButton Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickPurple" x:Name="ButtonPurple">
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickPurple" Visibility="{Binding ShowColorButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonPurple">
                 <Rectangle Fill="Purple" Height="14" Width="14"/>
-            </ToggleButton>
-            <ToggleButton Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickBlack" IsChecked="True" x:Name="ButtonBlack">
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickBlack" Visibility="{Binding ShowColorButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonBlack">
                 <Rectangle Fill="black" Height="14" Width="14"/>
-            </ToggleButton>
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickErase" Visibility="{Binding ShowColorButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonErase">
+                <Image Source="/Icons/eraser.png"/>
+            </Button>
+
+            <!-- Shapes -->
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickLine" Visibility="{Binding ShowShapeButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonLine">
+                <Image Source="/Icons/diagonal-line.png"/>
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickRectangle" Visibility="{Binding ShowShapeButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonRectangle">
+                <Image Source="/Icons/rectangle.png"/>
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickTriangle" Visibility="{Binding ShowShapeButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonTriangle">
+                <Image Source="/Icons/triangle.png"/>
+            </Button>
+            <Button Height="20" Width="20" Margin="2" Background="Transparent" Click="ClickCircle" Visibility="{Binding ShowShapeButtons, Converter={StaticResource BoolToVis}}" x:Name="ButtonCircle">
+                <Image Source="/Icons/circle.png"/>
+            </Button>
         </StackPanel>
 
-
-
-
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Label Content="Tool : " Padding="1" Margin="2"/>
+            <Image Height="15" Width="15" Source="{Binding ShowCurrentToolButton}"/>
+            <Label Content="Color : " Padding="1" Margin="10,2,2,2"/>
+            <Rectangle Height="15" Width="15" Fill="{Binding ShowCurrentColorButton}"/>
+            <Label Content="Shape : " Padding="1" Margin="10,2,2,2" Visibility="{Binding ShowShapeButtons, Converter={StaticResource BoolToVis}}"/>
+            <Image Height="15" Width="15" Source="{Binding ShowCurrentShapeButton}" Visibility="{Binding ShowShapeButtons, Converter={StaticResource BoolToVis}}"/>
+            <Label Content="Content : " Padding="1" Margin="10,2,2,2" Visibility="{Binding ShowTextControls, Converter={StaticResource BoolToVis}}"/>
+            <TextBox Height="20" Width="120" Text="{Binding ShowTextControlString, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding ShowTextControls, Converter={StaticResource BoolToVis}}"/>
+            <Label Content="Font Size : " Padding="1" Margin="10,2,2,2" Visibility="{Binding ShowTextControls, Converter={StaticResource BoolToVis}}"/>
+            <TextBox Height="20" Width="120" Text="{Binding ShowTextControlsSize, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding ShowTextControls, Converter={StaticResource BoolToVis}}"/>
+        </StackPanel>
 
         <!-- Canvas -->
         <Skia:SKElement Grid.Row="2" 
                         x:Name="SkiaCanvas" 
-                        PaintSurface="SkiaCanvasPaintSurface" 
-                        MouseDown="SkiaCanvasMouseDown" 
-                        MouseMove="SkiaCanvasMouseMove" 
+                        PaintSurface="SkiaCanvasPaintSurface"
+                        MouseDown="SkiaCanvasMouseDown"
+                        MouseMove="SkiaCanvasMouseMove"
                         MouseUp="SkiaCanvasMouseUp"
                         />
-
-
-
-
-
-
-
-
     </Grid>
 </Window>
